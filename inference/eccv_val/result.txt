@@ -1,0 +1,9 @@
+mAP: 0.3862
+person          : 0.4086
+bicycle         : 0.1327
+car             : 0.6967
+van             : 0.4156
+truck           : 0.3117
+tricycle        : 0.3080
+bus             : 0.4975
+motor           : 0.3183

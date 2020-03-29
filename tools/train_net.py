@@ -25,6 +25,7 @@ from fcos_core.utils.comm import synchronize, \
 from fcos_core.utils.imports import import_file
 from fcos_core.utils.logger import setup_logger
 from fcos_core.utils.miscellaneous import mkdir
+import time
 
 
 def train(cfg, local_rank, distributed):
@@ -169,6 +170,10 @@ def main():
         config_str = "\n" + cf.read()
         logger.info(config_str)
     logger.info("Running with config:\n{}".format(cfg))
+
+    filename = '{}'.format(cfg.OUTPUT_DIR)+time.strftime("/%Y-%m-%d-%H-%M-%S", time.localtime())+'.txt'
+    with open(filename,'w') as cfg_f:
+        cfg_f.write(cfg.__str__())
 
     model = train(cfg, args.local_rank, args.distributed)
 

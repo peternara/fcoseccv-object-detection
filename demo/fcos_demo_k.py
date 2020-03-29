@@ -3,7 +3,7 @@ import argparse
 import cv2, os
 
 from fcos_core.config import cfg
-from .predictor import COCODemo
+from predictor import COCODemo_k as COCODemo
 
 import time
 
@@ -12,19 +12,19 @@ def main():
     parser = argparse.ArgumentParser(description="PyTorch Object Detection Webcam Demo")
     parser.add_argument(
         "--config-file",
-        default="configs/fcos/fcos_imprv_R_50_FPN_1x.yaml",
+        default="/home/e813/coding/FCOS/fcos_imprv_R_50_FPN_1x.yaml",
         metavar="FILE",
         help="path to config file",
     )
     parser.add_argument(
         "--weights",
-        default="FCOS_imprv_R_50_FPN_1x.pth",
+        default="/media/e813/E/output/FCOS/test1/model_0050000.pth",
         metavar="FILE",
         help="path to the trained model",
     )
     parser.add_argument(
         "--images-dir",
-        default="demo/images",
+        default="/home/e813/coding/FCOS/imgs",
         metavar="DIR",
         help="path to demo images directory",
     )
@@ -100,10 +100,11 @@ def main():
         start_time = time.time()
         composite = coco_demo.run_on_opencv_image(img)
         print("{}\tinference time: {:.2f}s".format(im_name, time.time() - start_time))
-        cv2.imshow(im_name, composite)
+        # cv2.imshow(im_name, composite)
+        cv2.imwrite(os.path.join(args.images_dir,'out', im_name),composite)
     print("Press any keys to exit ...")
-    cv2.waitKey()
-    cv2.destroyAllWindows()
+    # cv2.waitKey()
+    # cv2.destroyAllWindows()
 
 if __name__ == "__main__":
     main()

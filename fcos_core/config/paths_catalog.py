@@ -5,7 +5,7 @@ import os
 
 
 class DatasetCatalog(object):
-    DATA_DIR = "datasets"
+    DATA_DIR = "/media/e813/E/dataset"
     DATASETS = {
         "coco_2017_train": {
             "img_dir": "coco/train2017",
@@ -52,7 +52,7 @@ class DatasetCatalog(object):
             "ann_file": "coco/annotations/person_keypoints_valminusminival2014.json",
         },
         "voc_2007_train": {
-            "data_dir": "voc/VOC2007",
+            "data_dir": "VOCdevkit/VOC2007",
             "split": "train"
         },
         "voc_2007_train_cocostyle": {
@@ -108,6 +108,7 @@ class DatasetCatalog(object):
             "img_dir": "cityscapes/images",
             "ann_file": "cityscapes/annotations/instancesonly_filtered_gtFine_test.json"
         }
+
     }
 
     @staticmethod
@@ -132,6 +133,23 @@ class DatasetCatalog(object):
             )
             return dict(
                 factory="PascalVOCDataset",
+                args=args,
+            )
+        elif name=='eccv_train':
+            args = dict(
+                data_dir= '/media/e813/E/dataset/eccv/eccv/VisDrone2018-DET-train'
+            )
+            # exit(99)
+            return dict(
+                factory='EccvDataset',
+                args=args,
+            )
+        elif name=='eccv_val':
+            args = dict(
+                data_dir='/media/e813/E/dataset/eccv/eccv/VisDrone2018-DET-val'
+            )
+            return dict(
+                factory='EccvDataset',
                 args=args,
             )
         raise RuntimeError("Dataset not available: {}".format(name))

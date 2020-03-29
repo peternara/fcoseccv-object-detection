@@ -1,0 +1,11 @@
+mAP: 0.2186
+pedestrian      : 0.2717
+people          : 0.1878
+bicycle         : 0.0195
+car             : 0.6489
+van             : 0.2444
+truck           : 0.2132
+tricycle        : 0.0961
+awning-tricycle : 0.1212
+bus             : 0.1674
+motor           : 0.2161
